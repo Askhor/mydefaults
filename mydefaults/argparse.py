@@ -31,6 +31,7 @@ def flatten_decorator(deco):
 
     return impl0
 
+
 @flatten_decorator
 def command(func: Callable[[ArgumentParser], None], version: str):
     @wraps(func)

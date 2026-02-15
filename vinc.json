@@ -1,9 +1,9 @@
 {
 	"template": "<MAJOR>.<MINOR>.<COUNTER>",
-	"version": "1.0.1",
+	"version": "1.1.1",
 	"COUNTER": 1,
 	"MAJOR": 1,
-	"MINOR": 0,
+	"MINOR": 1,
 	"targets": {
 		"pyproject.toml": {
 			"find": "\"<VERSION>\"\\s*#\\s*version",
