@@ -18,6 +18,8 @@ def intercept_interrupts(func):
             func(*args, **kwargs)
         except KeyboardInterrupt:
             print(f"{Fore.RED}Program was interrupted by user{Fore.RESET}", file=sys.stderr)
+        except EOFError:
+            print(f"{Fore.RED}Program ran out of input{Fore.RESET}", file=sys.stderr)
 
     return impl
 
