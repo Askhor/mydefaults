@@ -3,7 +3,6 @@ import logging
 from colorama import Fore
 
 from mydefaults.argparse import command, sub_command, add_sub_commands, run_sub_command, MAGIC
-from mydefaults.decorators import map_output
 
 
 def create_logger(name: str):
