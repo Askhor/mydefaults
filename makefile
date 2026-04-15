@@ -27,8 +27,3 @@ clean:
 
 upload: set_user build
 	$(py) -m twine upload --repository pypi dist/* $(flags)
-
-reload: upload
-	pipx upgrade $(program-name)
-	pipx upgrade $(program-name)
-	$(program-name) --version

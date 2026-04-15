@@ -42,7 +42,8 @@ def command(func: Callable[[ArgumentParser], None], version: str):
         name = func.__name__.replace("_", "-")
         description = func.__doc__
         parser = ArgumentParser(prog=name, description=description, add_help=True)
-        parser.add_argument('-v', '--verbose', action='store_true', help="Show more output")
+        parser.add_argument("-v", "--verbose", default=0, action="count", help="Show more output")
+        parser.add_argument("-q", "--quiet", default=0, action="count", help="Show less output")
         parser.add_argument("--version", action="version", version=f"%(prog)s {version}")
 
         func(parser)
