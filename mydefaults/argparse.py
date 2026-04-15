@@ -36,10 +36,11 @@ def flatten_decorator(deco):
 
 @flatten_decorator
 def command(func: Callable[[ArgumentParser], None], version: str):
+    name = func.__name__.replace("_", "-")
+
     @wraps(func)
     @intercept_interrupts
     def impl():
-        name = func.__name__.replace("_", "-")
         description = func.__doc__
         parser = ArgumentParser(prog=name, description=description, add_help=True)
         parser.add_argument("-v", "--verbose", default=0, action="count", help="Show more output")
@@ -52,6 +53,8 @@ def command(func: Callable[[ArgumentParser], None], version: str):
 
 
 def sub_command(func: Callable[[ArgumentParser], MAGIC]):
+    name = func.__name__.replace("_", "-")
+
     def send_to_generator(args: Namespace, generator: MAGIC):
         try:
             generator.send(args)
@@ -60,7 +63,7 @@ def sub_command(func: Callable[[ArgumentParser], MAGIC]):
 
     @wraps(func)
     def impl(subparsers) -> None:
-        parser = subparsers.add_parser(func.__name__, description=func.__doc__, help=func.__doc__)
+        parser = subparsers.add_parser(name, description=func.__doc__, help=func.__doc__)
         generator: MAGIC = func(parser)
         next(generator)
         parser.set_defaults(sub_command=lambda args: send_to_generator(args, generator))

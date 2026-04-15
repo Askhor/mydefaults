@@ -1,7 +1,7 @@
 {
 	"template": "<MAJOR>.<MINOR>.<COUNTER>",
-	"version": "2.1.6",
-	"COUNTER": 6,
+	"version": "2.1.7",
+	"COUNTER": 7,
 	"MAJOR": 2,
 	"MINOR": 1,
 	"targets": {
